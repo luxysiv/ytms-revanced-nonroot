@@ -82,7 +82,7 @@ for name in $revanced_name $revanced_extended_name ; do
     if [[ "$name" = "$revanced_name" ]]; then
         user="$revanced_user"
         patch_file="$revanced_patch"
-        else
+    else
         user="$revanced_extended_user"
         patch_file="$revanced_extended_patch"
     fi  
