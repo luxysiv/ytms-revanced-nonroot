@@ -82,11 +82,9 @@ for name in $revanced_name $revanced_extended_name ; do
     if [[ "$name" = "$revanced_name" ]]; then
         user="$revanced_user"
         patch_file="$revanced_patch"
-        ytmsversion="$revanced_ytmsversion"
-    else
+        else
         user="$revanced_extended_user"
         patch_file="$revanced_extended_patch"
-        ytmsversion="$revanced_extended_ytmsversion"
     fi  
 get_patch
 download_latest_release
