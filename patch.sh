@@ -90,10 +90,10 @@ for name in $revanced_name $revanced_extended_name ; do
     fi  
 get_patch
 download_latest_release
-if [[ "$name" = "$revanced_name" ]] ; then
-  get_support_version
-  dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
-  else get_latestytmversion 
+ if [[ "$name" = "$revanced_name" ]] ; then
+   get_support_version
+   dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
+ else get_latestytmversion 
   dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
 fi
 patch_ms
