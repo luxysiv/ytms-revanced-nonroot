@@ -92,8 +92,8 @@ download_latest_release
    get_support_version
    dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
  else get_latestytmversion 
-  dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
-fi
+   dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
+ fi
 patch_ms
 clean_cache
 done
