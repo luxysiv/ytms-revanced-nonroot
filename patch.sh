@@ -32,7 +32,7 @@ get_latestytmversion() {
     ytmsversion=$(req "$url" - | grep "All version" -A200 | grep app_release | sed 's:.*/youtube-music-::g;s:-release/.*::g;s:-:.:g' | sort -r | head -1)
     echo "Latest Youtube Music Version: $ytmsversion"
 }
-get_support_version() {
+get_support_ytmversion() {
 ytmsversion=$(jq -r '.[] | select(.name == "hide-get-premium") | .compatiblePackages[] | select(.name == "com.google.android.apps.youtube.music") | .versions[-1]' patches.json)
 }
 # Function Patch APK
@@ -77,7 +77,7 @@ for name in $revanced_name $revanced_extended_name ; do
     fi  
 download_latest_release
  if [[ "$name" = "$revanced_name" ]] ; then
-   get_support_version
+   get_support_ytmversion
    dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
    patch_msrv
  else get_latestytmversion 
