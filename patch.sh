@@ -27,7 +27,7 @@ dl_ytm() {
     url="https://www.apkmirror.com$(req "$url" - | tr '\n' ' ' | sed -n 's;.*href="\(.*key=[^"]*\)">.*;\1;p')"
     req "$url" "$2"
 }
-get_latestytmversion() {
+get_latest_ytmversion() {
     url="https://www.apkmirror.com/apk/google-inc/youtube-music/"
     ytmsversion=$(req "$url" - | grep "All version" -A200 | grep app_release | sed 's:.*/youtube-music-::g;s:-release/.*::g;s:-:.:g' | sort -r | head -1)
     echo "Latest Youtube Music Version: $ytmsversion"
@@ -80,7 +80,7 @@ download_latest_release
    get_support_ytmversion
    dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
    patch_msrv
- else get_latestytmversion 
+ else get_latest_ytmversion 
    dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
    patch_msrve
  fi
