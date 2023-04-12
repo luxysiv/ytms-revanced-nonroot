@@ -3,29 +3,9 @@ set -e
 # Set variables for Revanced
 readonly revanced_name="revanced"
 readonly revanced_user="revanced"
-readonly revanced_patch="patches.rv"
 # Set variables for Revanced Extended
 readonly revanced_extended_name="revanced-extended"
 readonly revanced_extended_user="inotia00"
-readonly revanced_extended_patch="patches.rve"
-# Function prepare patches keywords
-get_patch() {
-    local excluded_start=$(grep -n -m1 'EXCLUDE PATCHES' "$patch_file" | cut -d':' -f1)
-    local included_start=$(grep -n -m1 'INCLUDE PATCHES' "$patch_file" | cut -d':' -f1)
-    local excluded_patches=$(tail -n +$excluded_start $patch_file | head -n "$(( included_start - excluded_start ))"  | grep '^[^#[:blank:]]')
-    local included_patches=$(tail -n +$included_start $patch_file | grep '^[^#[:blank:]]')
-    patches=()
-    if [[ -n "$excluded_patches" ]]; then
-        while read -r patch; do
-            patches+=("-e $patch")
-        done <<< "$excluded_patches"
-    fi
-    if [[ -n "$included_patches" ]]; then
-        while read -r patch; do
-            patches+=("-i $patch")
-        done <<< "$included_patches"
-    fi
-}
 # Function download latest github releases 
 download_latest_release() {
     echo "⏬ Downloading $name resources..."
@@ -95,7 +75,6 @@ for name in $revanced_name $revanced_extended_name ; do
         user="$revanced_extended_user"
         patch_file="$revanced_extended_patch"
     fi  
-get_patch
 download_latest_release
  if [[ "$name" = "$revanced_name" ]] ; then
    get_support_version
