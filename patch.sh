@@ -56,13 +56,22 @@ get_support_version() {
 ytmsversion=$(jq -r '.[] | select(.name == "hide-get-premium") | .compatiblePackages[] | select(.name == "com.google.android.apps.youtube.music") | .versions[-1]' patches.json)
 }
 # Function Patch APK
-patch_ms() {
+patch_msrv() {
 echo "⚙️ Patching YouTube Music..."
 java -jar revanced-cli*.jar \
      -m revanced-integrations*.apk \
      -b revanced-patches*.jar \
      -a youtube-music-v$ytmsversion.apk \
-     ${patches[@]} \
+     --keystore=ks.keystore \
+     -o ytms-$name-v$ytmsversion.apk
+}
+patch_msrve() {
+echo "⚙️ Patching YouTube Music..."
+java -jar revanced-cli*.jar \
+     -m revanced-integrations*.apk \
+     -b revanced-patches*.jar \
+     -a youtube-music-v$ytmsversion.apk \
+     -e custom-branding-music-afn-red
      --keystore=ks.keystore \
      -o ytms-$name-v$ytmsversion.apk
 }
@@ -91,9 +100,10 @@ download_latest_release
  if [[ "$name" = "$revanced_name" ]] ; then
    get_support_version
    dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
+   patch_msrv
  else get_latestytmversion 
    dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
+   patch_msrve
  fi
-patch_ms
 clean_cache
 done
