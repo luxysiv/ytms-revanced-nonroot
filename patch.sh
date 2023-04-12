@@ -33,7 +33,7 @@ get_latest_ytmsversion() {
     echo "🔸 Latest Youtube Music Version: $ytmsversion"
 }
 get_support_ytmsversion() {
-ytmsversion=$(jq -r '.[] | select(.name == "hide-get-premium") | .compatiblePackages[] | select(.name == "com.google.android.apps.youtube.music") | .versions[-1]' patches.json)
+    ytmsversion=$(jq -r '.[] | select(.name == "hide-get-premium") | .compatiblePackages[] | select(.name == "com.google.android.apps.youtube.music") | .versions[-1]' patches.json)
 }
 # Function Patch APK
 patch_msrv() {
