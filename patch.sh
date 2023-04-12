@@ -71,7 +71,7 @@ java -jar revanced-cli*.jar \
      -m revanced-integrations*.apk \
      -b revanced-patches*.jar \
      -a youtube-music-v$ytmsversion.apk \
-     -e custom-branding-music-afn-red
+     -e custom-branding-music-afn-red \
      --keystore=ks.keystore \
      -o ytms-$name-v$ytmsversion.apk
 }
