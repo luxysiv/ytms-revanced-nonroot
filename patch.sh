@@ -76,13 +76,14 @@ for name in $revanced_name $revanced_extended_name ; do
         patch_file="$revanced_extended_patch"
     fi  
 download_latest_release
- if [[ "$name" = "$revanced_name" ]] ; then
-   get_support_ytmversion
-   dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
-   patch_msrv
- else get_latest_ytmversion 
-   dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
-   patch_msrve
- fi
+    if [[ "$name" = "$revanced_name" ]] ; then
+        get_support_ytmversion
+        dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
+        patch_msrv
+     else 
+        get_latest_ytmversion 
+        dl_ytm $ytmsversion youtube-music-v$ytmsversion.apk 
+        patch_msrve
+     fi
 clean_cache
 done
